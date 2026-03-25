@@ -50,7 +50,7 @@ class RegistrationForm(forms.Form):
         )
     )
 
-    senha_1 = forms.CharField(
+    password_1 = forms.CharField(
         label='Senha',
         required=True,
         max_length=60,
@@ -62,7 +62,7 @@ class RegistrationForm(forms.Form):
         )
     )
 
-    senha_2 = forms.CharField(
+    password_2 = forms.CharField(
         label='Confirmação de senha',
         required=True,
         max_length=60,
