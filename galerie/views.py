@@ -1,8 +1,15 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from galerie.models import Photograph
+from django.contrib import messages
 
 def index(request):
     # photos = Photograph.objects.all()
+
+    # check whether the user is authenticated
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
+
     photos = Photograph.objects.order_by("date").filter(published=True)
     return render(request, 'galerie/index.html', {'cards': photos})
 
@@ -11,6 +18,12 @@ def imagem(request, photo_id):
     return render(request, 'galerie/imagem.html', {"photo": photo})
 
 def search(request):
+
+    # check whether the user is authenticated
+    if not request.user.is_authenticated:
+        messages.error(request, 'Usuário não logado')
+        return redirect('login')
+
     photos = Photograph.objects.order_by('date').filter(published=True)
 
     # check whether the search term is in the request
