@@ -41,11 +41,6 @@ def registration(request):
 
         # check if the form is valid
         if form.is_valid():
-
-            # check whether the passwords are the same
-            if form['password_1'].value() != form['password_2'].value():
-                messages.error(request, 'Senhas não são iguais')
-                return redirect(registration)
             
             username = form['username'].value()
             email = form['email'].value()

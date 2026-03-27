@@ -1,0 +1,8 @@
+{% if messages %}
+    {% for message in messages %}
+        <!-- Change message style according to its tag (message type) -->
+        <div class="alert alert-{{ messages.tags }}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
